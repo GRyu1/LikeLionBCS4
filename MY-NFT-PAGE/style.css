@@ -1,8 +1,19 @@
+@font-face {
+    font-family: "DS-DIGI";
+    src: url("./assets/fonts/DS-DIGI.TTF");
+  }
+  
+  .font-digi {
+    font-family: "DS-DIGI";
+  }
+
 body{
     margin: 0 auto;
-    padding: auto;
+    padding: 0 auto;
     background-color: black;
+    color: white;
 }
+
 
 video{
     width: 100vw;
@@ -13,3 +24,23 @@ video{
     object-fit: cover;
     z-index: -1;
 }
+
+h1{
+    margin: 0;
+}
+
+.container {
+    max-width: 1280px;
+    margin: auto;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 0px;
+  }
+
+  header{
+    display: flex;
+    padding: 16px;
+    font-size: 32px;
+    justify-content: space-between;
+  }
+
