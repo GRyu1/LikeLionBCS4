@@ -11,3 +11,51 @@ const getTime = () => {
 
 getTime()
 setInterval(getTime,1000);
+
+function getQuotes() {
+    const quotes = document.querySelector(".quotes");
+  
+    let savedQuotes = localStorage.getItem("QUOTES_LIST");
+  
+    if (!savedQuotes) {
+      localStorage.setItem("QUOTES_LIST", JSON.stringify(["열심히 살자!"]));
+  
+      savedQuotes = localStorage.getItem("QUOTES_LIST");
+    }
+  
+    let parsedQuotes = JSON.parse(savedQuotes);
+  
+    quotes.innerText =
+    parsedQuotes[Math.floor(Math.random() * parsedQuotes.length)];
+  }
+  getQuotes();
+
+  function onClickNewQuotes() {
+    const quotes = document.querySelector(".quotes");
+    const newQuotes = document.querySelector(".new-quotes");
+    const newQuotesInput = document.querySelector(".new-quotes-input");
+    if (!newQuotesInput.value) return;
+  
+    // 로컬 스토리지에 저장
+    let savedQuotes = localStorage.getItem("QUOTES_LIST");
+    let parsedQuotes = JSON.parse(savedQuotes);
+  
+    parsedQuotes.push(newQuotesInput.value);
+  
+    localStorage.setItem("QUOTES_LIST", JSON.stringify(parsedQuotes));
+  
+    // 현재 페이지 반영
+    quotes.innerText = newQuotesInput.value;
+    newQuotesInput.value = "";
+
+    quotes.style.display = "block";
+    newQuotes.style.display = "none";
+  }
+
+  function onClickQuotes() {
+    const quotes = document.querySelector(".quotes");
+    const newQuotes = document.querySelector(".new-quotes");
+  
+    quotes.style.display = "none";
+    newQuotes.style.display = "block";
+  }

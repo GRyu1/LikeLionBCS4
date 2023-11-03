@@ -44,3 +44,35 @@ h1{
     justify-content: space-between;
   }
 
+  button {
+    border: 0;
+    background-color: transparent;
+    color: white;
+    font-size: 24px;
+  }
+  .new-quotes {
+    display: none;
+  }
+
+  .new-quotes > button {
+    background-color: transparent;
+    padding: 8px 16px;
+    margin-left: 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    color: white;
+  }
+  
+  .new-quotes-input {
+    border: 1px solid rgb(255, 255, 255);
+    padding: 4px 8px;
+    font-size: 20px;
+    color: white;
+    background-color: transparent;
+    border-radius: 4px;
+  }
+  
+  .new-quotes-input:focus {
+    outline: 2px solid rgb(255, 255, 255);
+    background-color: transparent;
+  }
