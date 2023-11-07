@@ -76,3 +76,27 @@ h1{
     outline: 2px solid rgb(255, 255, 255);
     background-color: transparent;
   }
+
+  .nft {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .nft-img {
+    width: 512px;
+    height: 512px;
+  }
+  
+  .nft-name {
+    font-size: 48px;
+    background-color: rgba(255, 192, 203, 0.5);
+    padding: 8px 16px;
+  }
+  
+  .nft-desc {
+    font-size: 24px;
+    background-color: rgba(255, 192, 203, 0.5);
+    padding: 8px 16px;
+  }

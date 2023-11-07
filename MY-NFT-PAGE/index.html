@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Hello NFT!</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -20,10 +21,17 @@
                 </div>
               </div>
         </header>
-        <main></main>
+        <main>
+          <div class="nft">
+            <img class="nft-img" loading="lazy" />
+            <h1 class="nft-name"></h1>
+            <h3 class="nft-desc"></h3>
+          </div>
+        </main>
         <footer></footer>
     </div>
     <video src="./assets/background_video.mp4" autoplay muted loop></video>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
