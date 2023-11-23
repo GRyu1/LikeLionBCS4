@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
+  asyncUpFetch,
   decrement,
   decrementByAmount,
   increment,
@@ -14,13 +15,6 @@ const App = () => {
   const [num, setNum] = useState(0);
 
   useEffect(()=>{
-    axios.get('/init')
-    .then((resp)=>{
-      setNum(resp.data)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
   },[])
 
   return (
@@ -42,6 +36,7 @@ const App = () => {
         <button onClick={() => dispatch(decrementByAmount(+num))}>
           decrementByAmout
         </button>
+        <button onClick={()=>dispatch(asyncUpFetch())}>asyncUpFetch</button>
       </div>
     </div>
   );
