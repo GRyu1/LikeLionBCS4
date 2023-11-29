@@ -5,64 +5,44 @@ const router = express.Router();
 let todoId = 1;
 let todos = [{ id: 1, title: "🧹 청소하기", isDone: false }];
 
+// To do 생성
 router.post("/", (req, res) => {
   const { title } = req.body;
 
-  if (!title) {
-    return res.status(400).json({
-      message: "Not exist title.",
-    });
-  }
+  if (!title) return res.status(400).json({ message: "Not exist title." });
 
   todoId++;
 
-  const newTodo = { id: todoId, title, isDone: false };
+  let newTodo = { id: todoId, title, isDone: false };
 
   todos.push(newTodo);
-
-  console.log(todos);
 
   return res.json({ todo: newTodo });
 });
 
+// 전체 Todo 가져오기
 router.get("/", (req, res) => {
   return res.json({ todos });
 });
 
+// 특정 Todo 가져오기
 router.get("/:todoId", (req, res) => {
   const { todoId } = req.params;
-
-  if (isNaN(todoId)) {
-    return res.status(400).json({
-      message: "todoId is not a number.",
-    });
-  }
 
   let existTodo;
 
   todos.map((v) => {
-    if (v.id === +todoId) {
-      existTodo = v;
-    }
+    if (v.id === +todoId) existTodo = v;
   });
 
-  if (!existTodo) {
-    return res.status(400).json({
-      message: "Not exist todo.",
-    });
-  }
+  if (!existTodo) return res.status(400).json({ message: "Not exist todo." });
 
   return res.json({ todo: existTodo });
 });
 
+// Todo 완료
 router.put("/:todoId/done", (req, res) => {
   const { todoId } = req.params;
-
-  if (isNaN(todoId)) {
-    return res.status(400).json({
-      message: "todoId is not a number.",
-    });
-  }
 
   let updateTodo;
 
@@ -76,24 +56,15 @@ router.put("/:todoId/done", (req, res) => {
     }
   });
 
-  if (!updateTodo) {
-    return res.status(400).json({
-      message: "Not exist todo.",
-    });
-  }
-
   return res.json({ todo: updateTodo });
 });
 
+// Todo 수정
 router.put("/:todoId", (req, res) => {
   const { todoId } = req.params;
   const { title } = req.body;
 
-  if (isNaN(todoId) || !title) {
-    return res.status(400).json({
-      message: "Not exist data.",
-    });
-  }
+  if (!title) return res.status(400).json({ message: "Not exist title." });
 
   let updateTodo;
 
@@ -107,19 +78,12 @@ router.put("/:todoId", (req, res) => {
     }
   });
 
-  console.log(todos);
-
   return res.json({ todo: updateTodo });
 });
 
+// Todo 삭제
 router.delete("/:todoId", (req, res) => {
   const { todoId } = req.params;
-
-  if (isNaN(todoId)) {
-    return res.status(400).json({
-      message: "todoId is not a number.",
-    });
-  }
 
   todos = todos.filter((v) => {
     if (v.id !== +todoId) {
@@ -127,9 +91,7 @@ router.delete("/:todoId", (req, res) => {
     }
   });
 
-  console.log(todos);
-
-  return res.json({ message: "Deleted todo." });
+  return res.json({ message: "Delete success." });
 });
 
 module.exports = router;

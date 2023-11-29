@@ -1,23 +1,35 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getTodos } from "./redux/appThunk";
+import { useDispatch, useSelector } from "react-redux";
 import CreateTodo from "./components/CreateTodo";
+import { getTodos } from "./redux/appThunk";
+import TodoCard from "./components/TodoCard";
 
 const App = () => {
-  const { todos } = useSelector((state) => state.appReducer); // appReducer<< 이게 선택자.
+  const { todos } = useSelector((state) => state.appReducer);
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    dispatch(getTodos());
-  },[]);
-
   useEffect(() => {
-    console.log(todos);
-  }, [todos]);
+    if (todos) return;
 
-  return <div className="bg-red-100">
-    <CreateTodo/>
-    </div>;
+    dispatch(getTodos());
+  }, [todos, dispatch]);
+
+  return (
+    <div className="min-h-screen flex flex-col items-center py-20">
+      <CreateTodo />
+      <ul className="mt-12">
+        {todos?.map((v, i) => (
+          <TodoCard
+            key={i}
+            index={i}
+            isDone={v.isDone}
+            title={v.title}
+            id={v.id}
+          />
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default App;
