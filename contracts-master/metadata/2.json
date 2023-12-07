@@ -1,0 +1,19 @@
+{
+  "name": "Goldy",
+  "description": "Goldy - golden retriever",
+  "image": "https://beige-absent-caterpillar-719.mypinata.cloud/ipfs/QmYvqUaaxU6GNCdU2Vj8gPWejUjaLjVkTsSqqbnZs9igzQ",
+  "attributes": [
+    {
+      "trait_type": "Color",
+      "value": "Orange"
+    },
+    {
+      "trait_type": "Accent",
+      "value": "Woof"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Cute"
+    }
+  ]
+}

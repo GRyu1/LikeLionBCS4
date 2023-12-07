@@ -1,0 +1,19 @@
+{
+  "name": "Highland Cow",
+  "description": "Highland Cow - three",
+  "image": "https://beige-absent-caterpillar-719.mypinata.cloud/ipfs/QmUgP9b3x7gcu5fw9UCDaD28RmBDqCdEbvBe1mhRjufrjC",
+  "attributes": [
+    {
+      "trait_type": "Color",
+      "value": "Brown"
+    },
+    {
+      "trait_type": "Location",
+      "value": "Scott"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Cute"
+    }
+  ]
+}

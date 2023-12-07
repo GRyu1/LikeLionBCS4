@@ -1,0 +1,27 @@
+{
+  "name": "Bitcoin",
+  "description": "Bitcoin - digital supremacy",
+  "image": "https://beige-absent-caterpillar-719.mypinata.cloud/ipfs/QmPdeSBTtBmveUCNVG39BKP345ua5whYppfWRwXv4AomGD",
+  "attributes": [
+    {
+      "trait_type": "Price",
+      "value": "$1,000,000,000,000"
+    },
+    {
+      "trait_type": "Color",
+      "value": "Orange"
+    },
+    {
+      "trait_type": "Accent",
+      "value": "British"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Cute"
+    },
+    {
+      "trait_type": "Comment",
+      "value": "Orange is the new Green"
+    }
+  ]
+}
