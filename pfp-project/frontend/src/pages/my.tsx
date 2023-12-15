@@ -1,15 +1,21 @@
 import { FC, useEffect, useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import MintModal from "../components/MintModal";
 import { NftMetadata, OutletContext } from "../types";
 import axios from "axios";
 import MyNftCard from "../components/MyNftCard";
+import { SALE_NFT_CONTRACT } from "../abis/contractAddress";
+
 
 const My: FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [metadataArray, setMetadataArray] = useState<NftMetadata[]>([]);
+  const [saleStatus, setSaleStatus] = useState<boolean>(false);
 
-  const { mintNftContract, account } = useOutletContext<OutletContext>();
+  const { mintNftContract, saleNftContract, account } =
+    useOutletContext<OutletContext>();
+
+  const navigate = useNavigate();
 
   const onClickMintModal = () => {
     if (!account) return;
@@ -48,16 +54,51 @@ const My: FC = () => {
     }
   };
 
+  const getSaleStatus = async () => {
+    try {
+      const isApproved: boolean = await mintNftContract.methods
+        // @ts-expect-error
+        .isApprovedForAll(account, SALE_NFT_CONTRACT)
+        .call();
+
+      setSaleStatus(isApproved);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onClickSaleStatus =async () => {
+    try {
+      //@ts-expect-error
+      const response = await  mintNftContract.methods.setApprovalForAll(SALE_NFT_CONTRACT, !saleStatus).send({
+        from: account,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     getMyNFTs();
   }, [mintNftContract, account]);
 
-  useEffect(() => console.log(metadataArray), [metadataArray]);
+  useEffect(() => {
+    if (account) return;
+
+    navigate("/");
+  }, [account]);
+
+  useEffect(() => {
+    if (!account) return;
+
+    getSaleStatus();
+  }, [account]);
 
   return (
     <>
       <div className="grow">
-        <div className="text-right p-2">
+        <div className="flex justify-between p-2">
+          <button className="hover:text-gray-500" onClick={onClickSaleStatus}>Sale Approved: {saleStatus ? "TRUE" : "FALSE"}</button>
           <button className="hover:text-gray-500" onClick={onClickMintModal}>
             Mint
           </button>
@@ -67,7 +108,13 @@ const My: FC = () => {
         </div>
         <ul className="p-8 grid grid-cols-2 gap-8">
           {metadataArray?.map((v, i) => (
-            <MyNftCard key={i} image={v.image} name={v.name} tokenId={v.tokenId!}/>
+            <MyNftCard
+            key={i}
+            image={v.image}
+            name={v.name}
+            tokenId={v.tokenId!}
+            saleStatus={saleStatus}
+          />
           ))}
         </ul>
       </div>
